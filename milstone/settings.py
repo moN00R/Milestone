@@ -121,9 +121,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'milestone',
-        'USER': 'root',
+        'USER': 'myuser',
         'PASSWORD': 'noor8832664',
-        'HOST': '127.0.0.1',  # or the hostname where your MySQL server is running
+        'HOST': 'localhost',  # or the hostname where your MySQL server is running
         'PORT': '3306',      # or the port on which your MySQL server is listening
     }
 }
