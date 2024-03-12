@@ -43,10 +43,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'phonenumber_field',
     'djoser',
-    'courses',
-    'librarys',
-    'marks',
-    'accounts',
     'account_user',
 ]
 
@@ -61,7 +57,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-AUTH_USER_MODEL = 'accounts.User'
+# AUTH_USER_MODEL = 'accounts_user.User'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',

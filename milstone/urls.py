@@ -19,11 +19,7 @@ from django.urls import path, include
 
 
 app_patterns = [
-    path('auth/', include('accounts.urls')),
     path('user/', include('account_user.urls')),
-    path('', include('librarys.urls')),
-    path('', include('courses.urls')),
-    path('', include('marks.urls')),
 
 ]
 

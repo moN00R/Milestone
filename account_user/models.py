@@ -1,12 +1,10 @@
-from uuid import uuid4
+from base_model import BaseModel
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
 
-class User_info(models.Model):
-    ERP_id = models.CharField(max_length=255)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    phone_number = PhoneNumberField(
-        region='SY', blank=False, null=False, unique=True)
-    password = models.CharField(max_length=50)
+class User_info(BaseModel):
+    name = models.CharField(max_length=100)
+    ERB_Student_Id = models.CharField(max_length=70)
+    phonenumber = PhoneNumberField(region='SY')
+    password = models.CharField(max_length=100)
