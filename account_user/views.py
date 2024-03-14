@@ -1,20 +1,24 @@
-from django.shortcuts import render
+from rest_framework import status
+from requests import Response
 from rest_framework.viewsets import ModelViewSet
 from .serializers import UserinfoSerializer
-from .models import User_info
+from rest_framework.decorators import api_view
 
 
-class get_user_info(ModelViewSet):
-    http_method_names = ['get']
-    queryset = User_info.objects.all()
-    serializer_class = UserinfoSerializer
-    permission_classes = ()
+@api_view(['POST'])
+def get_user_info(request):
+    if request.user.is_authenticated:  # Check authentication for security
+        # You can perform actions that require authentication here
+        # ...
 
-    def list(self, request, *args, **kwargs):
-        data = super().list(request, *args, **kwargs)
-        return data
-    
-    
-    
-    
-
+        if request.data:  # Check if data is provided in the request body
+            serializer = UserinfoSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()  # Save the new user object
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({'error': 'No data provided in request body'}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response({'error': 'Unauthorized'}, status=status.HTTP_401_UNAUTHORIZED)
