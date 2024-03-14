@@ -15,10 +15,10 @@ def get_user_info(request):
             serializer = UserinfoSerializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()  # Save the new user object
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+                return Response(serializer.data)
             else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                return Response(serializer.errors)
         else:
-            return Response({'error': 'No data provided in request body'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'No data provided in request body'})
     else:
         return Response({'error': 'Unauthorized'}, status=status.HTTP_401_UNAUTHORIZED)
