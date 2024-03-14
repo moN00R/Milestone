@@ -21,4 +21,4 @@ def get_user_info(request):
         else:
             return Response({'error': 'No data provided in request body'})
     else:
-        return Response({'error': 'Unauthorized'}, status=status.HTTP_401_UNAUTHORIZED)
+        return Response({'error': 'Unauthorized'})
