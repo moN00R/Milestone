@@ -8,12 +8,12 @@ from django.contrib.auth.hashers import make_password
 class UserinfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = User_info
-        fields = ['name', 'ERP_Student_Id', 'phonenumber', 'password']
+        fields = ['name', 'username', 'phonenumber', 'password']
 
     def create(self, validated_data):
         user = User_info.objects.create(
             name=validated_data['name'],
-            ERP_Student_Id=validated_data['ERP_Student_Id'],
+            username=validated_data['username'],
             phonenumber=validated_data['phonenumber'],
             password=make_password(validated_data['password'])
         )
@@ -26,14 +26,14 @@ class LoginSerializer(TokenObtainPairSerializer):
 
     class Meta:
         model = User_info
-        fields = ['ERP_Student_Id', 'password']
+        fields = ['username', 'password']
         extra_kwargs = {'password': {'write_only': True}}
 
     def validate(self, attrs):
-        ERP_Student_Id = attrs.get('ERP_Student_Id')
+        username = attrs.get('username')
         password = attrs.get('password')
 
-        user = User_info.objects.filter(ERP_Student_Id=ERP_Student_Id).first()
+        user = User_info.objects.filter(username=username).first()
 
         if not user:
             raise AuthenticationFailed('User not found')
@@ -41,5 +41,4 @@ class LoginSerializer(TokenObtainPairSerializer):
         if not user.check_password(password):
             raise AuthenticationFailed('Incorrect password')
 
-       
         return super().validate(attrs)
