@@ -1,10 +1,13 @@
 from rest_framework_nested import routers
-from . import views
-from django.urls import path
+from .views import *
+from django.urls import include, path
 
 router = routers.DefaultRouter()
-router.register('', views.get_user_info)
+
+router.register('get', get_user_info, basename='get')
+# router.register('login', login, basename='login')
 
 urlpatterns = router.urls + [
-    # path('', views.get_user_info, name='get_user_info'),
+    path('login/', login.as_view(), name='login'),
+    path('', include(router.urls))
 ]
