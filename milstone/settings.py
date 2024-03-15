@@ -57,7 +57,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-AUTH_USER_MODEL = 'account_user.User_info'
+# AUTH_USER_MODEL = 'account_user.User_info'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',

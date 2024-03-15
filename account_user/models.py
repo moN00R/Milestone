@@ -14,7 +14,7 @@ from django.contrib.auth.models import AbstractUser, UserManager
 #         return super().create_user(**extra_fields)
 
 
-class User_info(AbstractUser, BaseModel):
+class User_info(BaseModel):
     # objects = UserManger()
     username = models.CharField(max_length=70, unique=True)
     name = models.CharField(max_length=100)
