@@ -2,7 +2,7 @@ import requests
 from rest_framework.viewsets import ModelViewSet, generics
 from account_user.models import User_info
 from .serializers import UserinfoSerializer, LoginSerializer
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAdminUser
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 
@@ -10,7 +10,7 @@ class SignUp(ModelViewSet):
     http_method_names = ['post']
     queryset = User_info.objects.all()
     serializer_class = UserinfoSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUser]
 
 
 class login(TokenObtainPairView):
