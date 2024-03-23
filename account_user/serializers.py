@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError, AuthenticationFailed
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .models import User_info
 from django.contrib.auth.hashers import make_password
@@ -42,3 +42,11 @@ class LoginSerializer(TokenObtainPairSerializer):
             raise AuthenticationFailed('Incorrect password')
 
         return super().validate(attrs)
+
+
+# class GetUserInfo(serializers.ModelSerializer):
+#     ERD_Student_Id = serializers.CharField(max_length=)
+
+#     url = f'https://milestone.erpnext-syr.com/api/method/ebx_milestone.apis.get_student_programs?student_id={ERD_Student_Id}'
+#     response = requests.get(url)
+#     response_data = response.json()

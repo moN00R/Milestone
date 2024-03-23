@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from datetime import timedelta
 from pathlib import Path
 from decouple import config
@@ -65,7 +65,6 @@ AUTHENTICATION_BACKENDS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 
@@ -170,3 +169,18 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 PHONENUMBER_DEFAULT_REGION = "SY"
+
+SOCIAL_AUTH_TRAILING_SLASH = False  # Optional, avoid trailing slashes in URLs
+SOCIAL_AUTH_REDIRECT_IS_HMAC = True  # For improved security (recommended)
+
+# SOCIAL_AUTH_OAUTH2 = {
+#     'provider': {  # Replace with your provider details
+#         'name': 'your_provider_name',
+#         'client_id': os.environ.get('SOCIAL_AUTH_CLIENT_ID'),
+#         'client_secret': os.environ.get('SOCIAL_AUTH_CLIENT_SECRET'),
+#         'auth_url': 'https://your-provider.com/oauth2/auth',
+#         'access_token_url': 'https://your-provider.com/oauth2/token',
+#         'api_key': 'your_api_key',  # If applicable
+#         'scope': ['read', 'write'],  # Requested permissions
+#     }
+# }
