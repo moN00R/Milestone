@@ -1,8 +1,9 @@
 from rest_framework import serializers
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from .models import User_info
+from .models import User_info, UserData
 from django.contrib.auth.hashers import make_password
+import requests
 
 
 class UserinfoSerializer(serializers.ModelSerializer):
@@ -44,9 +45,23 @@ class LoginSerializer(TokenObtainPairSerializer):
         return super().validate(attrs)
 
 
-# class GetUserInfo(serializers.ModelSerializer):
-#     ERD_Student_Id = serializers.CharField(max_length=)
+class GetUserInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserData
+        fields = ['assessment_result_id',
+                  'program', 'program_group',
+                  'instructor',
+                  'student_group_date'
+                  ]
 
-#     url = f'https://milestone.erpnext-syr.com/api/method/ebx_milestone.apis.get_student_programs?student_id={ERD_Student_Id}'
-#     response = requests.get(url)
-#     response_data = response.json()
+    extra_kwargs = {'assessment_result_id': {'read_only': True},
+                    'program': {'read_only': True},
+                    'program_group': {'read_only': True},
+                    'instructor': {'read_only': True},
+                    'student_group_date': {'read_only': True}}
+
+    assessment_result_id = serializers.CharField(max_length=100)
+    program = serializers.CharField(max_length=100)
+    program_group = serializers.CharField(max_length=100)
+    instructor = serializers.CharField(max_length=100)
+    student_group_date = serializers.DateField

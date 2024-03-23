@@ -21,3 +21,11 @@ class User_info(AbstractUser, BaseModel):
     password = models.CharField(max_length=100)
 
     # USERNAME_FIELD = 'ERP_Student_Id'
+
+
+class UserData(models.Model):
+    assessment_result_id = models.CharField(max_length=100)
+    program = models.CharField(max_length=100)
+    program_group = models.CharField(max_length=100)
+    instructor = models.CharField(max_length=100)
+    student_group_date = models.DateField
