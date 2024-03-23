@@ -32,13 +32,15 @@ class GetUserInfo(generics.RetrieveAPIView):
         student = self.request.user
         url = f'https://milestone.erpnext-syr.com/api/method/ebx_milestone.apis.get_student_programs?student_id={student.username}'
         headers = {'Authorization': f'token d5b1dcd838aad11:84d91436b74a1c7'}
-        info_response = requests.get(url, headers=headers)
-        user_info_response = info_response.json()
+        user_info_request = requests.get(url, headers=headers)
+        user_info_response = user_info_request.json()
+        user_info = [user_info_response['message'][0]]
 
         assessment_result = user_info_response['message'][0]['assessment_result_id']
         url2 = f'https://milestone.erpnext-syr.com/api/method/ebx_milestone.apis.get_assessment_result?assessment_result={assessment_result}'
-        user_mark = requests.get(url2, headers=headers)
-        user_mark_response = user_mark.json()
+        user_mark_request = requests.get(url2, headers=headers)
+        user_mark_response = user_mark_request.json()
+        user_mark = [user_mark_response["message"]]
 
-        data = [user_info_response, user_mark_response]
+        data = {'user_class_info': user_info[0],  'user_mark': user_mark[0]}
         return Response(data)
