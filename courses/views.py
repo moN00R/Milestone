@@ -7,12 +7,12 @@ from .serializers import CourseTypeserializer, CoursesSerializer
 
 class GetCourseTypeView(ModelViewSet):
     http_method_names = ('get', )
-    permission_classes = (IsAuthenticated, )
+    permission_classes = ()
     queryset = CourseType.objects.all()
     serializer_class = CourseTypeserializer
 
 class GetCoursesView(ModelViewSet):
     http_method_names = ('get',)
-    permission_classes = (IsAuthenticated, )
+    permission_classes = ()
     queryset = Course.objects.filter(active=True)
     serializer_class = CoursesSerializer
