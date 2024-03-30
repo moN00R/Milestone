@@ -1,32 +1,31 @@
 import requests
 from rest_framework.viewsets import ModelViewSet, generics
 from account_user.models import User_info, UserData
-from account_user.serializers import UserinfoSerializer, LoginSerializer, GetUserInfoSerializer
+from account_user.serializers import UserinfoSerializer, LoginSerializer, GetUserInfoSerializer, ChangePasswordSerializer
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.response import Response
-from django.http import JsonResponse
 
 
-class SignUp(ModelViewSet):
-    http_method_names = ['post']
+class SignUpView(ModelViewSet):
+    http_method_names = ('post', )
+    permission_classes = [IsAdminUser]
     queryset = User_info.objects.all()
     serializer_class = UserinfoSerializer
-    permission_classes = [IsAdminUser]
 
 
-class login(TokenObtainPairView):
-    http_method_names = ['post']
+class LoginView(TokenObtainPairView):
+    http_method_names = ('post', )
     queryset = User_info.objects.all()
     serializer_class = LoginSerializer
-    permission_classes = []
+    permission_classes = ()
 
 
-class GetUserInfo(generics.RetrieveAPIView):
-    http_method_names = ['get']
+class GetUserInfoView(generics.RetrieveAPIView):
+    http_method_names = ('get', )
+    permission_classes = [IsAuthenticated]
     queryset = UserData.objects.all()
     serializer_class = GetUserInfoSerializer
-    permission_classes = [IsAuthenticated]
 
     def retrieve(self, request, *args, **kwargs):
         student = self.request.user
@@ -44,3 +43,12 @@ class GetUserInfo(generics.RetrieveAPIView):
 
         data = {'user_class_info': user_info[0],  'user_mark': user_mark[0]}
         return Response(data)
+
+
+class ChangePasswordView(generics.UpdateAPIView):
+    permission_classes = (IsAuthenticated, )
+    queryset = User_info.objects.all()
+    serializer_class = ChangePasswordSerializer
+
+    def get_object(self):
+        return self.request.user

@@ -19,7 +19,9 @@ from django.urls import path, include
 
 
 app_patterns = [
-    path('user/', include('account_user.urls')),
+    path('users/', include('account_user.urls')),
+    path('courses/', include('courses.urls')),
+    path('library/', include('books.urls')),
 
 ]
 

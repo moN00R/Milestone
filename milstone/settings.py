@@ -43,7 +43,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'phonenumber_field',
     'djoser',
+    
     'account_user',
+    'courses',
+    'books',
 ]
 
 

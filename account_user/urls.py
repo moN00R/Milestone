@@ -1,15 +1,14 @@
 from rest_framework_nested import routers
-from .views import *
+from account_user.views import *
 from django.urls import include, path
 
 router = routers.DefaultRouter()
 
-router.register('signup', SignUp, basename='signup')
-# router.register('get_user_info', GetUserInfo, basename='get_user_info')
-
+router.register('signup', SignUpView, basename='signup')
 
 urlpatterns = router.urls + [
-    path('login/', login.as_view(), name='login'),
-    path('profil/', GetUserInfo.as_view(), name='get_user_info'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('profile/', GetUserInfoView.as_view(), name='get_user_info'),
+    path('change-password/', ChangePasswordView.as_view(), name='change_password'),
     path('', include(router.urls))
 ]
