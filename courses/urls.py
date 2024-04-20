@@ -7,5 +7,6 @@ router = routers.DefaultRouter()
 
 router.register('category', GetCourseTypeView, basename='category')
 router.register('course', GetCoursesView, basename='course')
+router.register('booking', BookingCourseView, basename='booking')
 
 urlpatterns = router.urls 

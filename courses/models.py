@@ -1,7 +1,11 @@
 from django.db import models
 from base_model import BaseModel 
+from phonenumber_field.modelfields import PhoneNumberField
 
-class CourseType(models.Model):
+
+
+
+class CourseType(BaseModel):
     name = models.CharField(max_length=100)
     
     def __str__(self):
@@ -56,7 +60,18 @@ class Course(BaseModel):
     image = models.ImageField(upload_to='courses/media', null=True, blank=True)
     days = models.CharField(max_length=100, choices=CHOICES_DAYS, default=Sunday_Tuesday_Thursday)
     hours = models.CharField(max_length=100, choices=CHOICES_TIME, default=TIME1)
+    limit_booking = models.PositiveIntegerField(null=True, blank=True, unique=False)
+    open_to_booking = models.BooleanField(default=False)
+    number_of_student = models.PositiveIntegerField(default=0, null=True, blank=True)
+
 
     def __str__(self) -> str:
         return f'{self.name} - {self.days}'
     
+
+class Subscription(BaseModel):
+    phonenumber = PhoneNumberField(region='SY')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.phonenumber}  in {self.course}'

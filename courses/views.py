@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
-from .models import CourseType, Course
-from .serializers import CourseTypeserializer, CoursesSerializer
+from .models import CourseType, Course, Subscription
+from .serializers import CourseTypeserializer, CoursesSerializer, BookingSerializer
 
 
 class GetCourseTypeView(ModelViewSet):
@@ -16,3 +16,13 @@ class GetCoursesView(ModelViewSet):
     permission_classes = ()
     queryset = Course.objects.filter(active=True)
     serializer_class = CoursesSerializer
+
+
+class BookingCourseView(ModelViewSet):
+    http_method_names = ('post', 'get')
+    queryset = Subscription.objects.filter(course__active=True, course__open_to_booking=True)
+    permission_classes = ()
+    serializer_class = BookingSerializer
+
+    
+    

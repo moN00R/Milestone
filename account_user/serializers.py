@@ -52,7 +52,8 @@ class GetUserInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserData
         fields = ['assessment_result_id',
-                  'program', 'program_group',
+                  'program', 
+                  'program_group',
                   'instructor',
                   'student_group_date'
                   ]
