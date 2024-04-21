@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'phonenumber_field',
     'djoser',
+    'import_export',
     
     'account_user',
     'courses',

@@ -71,7 +71,7 @@ class Course(BaseModel):
 
 class Subscription(BaseModel):
     phonenumber = PhoneNumberField(region='SY')
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='subscription')
 
     def __str__(self):
         return f'{self.phonenumber}  in {self.course}'

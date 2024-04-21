@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import CourseType, Course, Subscription
+from courses.models import CourseType, Course, Subscription
+from import_export.admin import ImportExportModelAdmin
+
 
 @admin.register(CourseType)
 class CourseType(admin.ModelAdmin):
@@ -19,7 +21,7 @@ class Course(admin.ModelAdmin):
     )
 
 @admin.register(Subscription)
-class BookingCourse(admin.ModelAdmin):
+class BookingCourse(ImportExportModelAdmin):
     list_display = (
         'id',
         'phonenumber',
