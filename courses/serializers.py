@@ -22,6 +22,8 @@ class CoursesSerializer(serializers.ModelSerializer):
             'hours', 
             'category',
             'active',
+            'open_to_booking',
+            
         )
     
     category = CourseTypeserializer()
@@ -60,14 +62,5 @@ class BookingSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('already exist')
 
         return attrs
-
-    # def create(self, validated_data):
-    #     course = self.course
-    #     phonenumber = validated_data['phonenumber']
-    #     subscription = Subscription.objects.create(
-    #         phonenumber=phonenumber, course=course)
-    #     return subscription    
-
-        
-
+ 
     
