@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'djoser',
     'import_export',
+    'corsheaders',
     
     'account_user',
     'courses',
@@ -59,6 +60,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 AUTH_USER_MODEL = 'account_user.User_info'
@@ -175,17 +178,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 PHONENUMBER_DEFAULT_REGION = "SY"
 
-SOCIAL_AUTH_TRAILING_SLASH = False  # Optional, avoid trailing slashes in URLs
-SOCIAL_AUTH_REDIRECT_IS_HMAC = True  # For improved security (recommended)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Replace with your React app's development URL
+]
 
-# SOCIAL_AUTH_OAUTH2 = {
-#     'provider': {  # Replace with your provider details
-#         'name': 'your_provider_name',
-#         'client_id': os.environ.get('SOCIAL_AUTH_CLIENT_ID'),
-#         'client_secret': os.environ.get('SOCIAL_AUTH_CLIENT_SECRET'),
-#         'auth_url': 'https://your-provider.com/oauth2/auth',
-#         'access_token_url': 'https://your-provider.com/oauth2/token',
-#         'api_key': 'your_api_key',  # If applicable
-#         'scope': ['read', 'write'],  # Requested permissions
-#     }
-# }
+CORS_ALLOW_ALL_METHODS = True  # Allow all methods for development
+
+CORS_ALLOW_ALL_HEADERS = True  # Allow all headers for development
