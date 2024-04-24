@@ -51,7 +51,7 @@ class BookingSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("you can't booking now")
         
         if course.number_of_student == course.limit_booking:
-            course.open_to_booking = False
+            course.open_to_booking == False
             course.save()
             raise serializers.ValidationError('you cant subsecript now.')
 
