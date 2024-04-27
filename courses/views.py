@@ -14,13 +14,13 @@ class GetCourseTypeView(ModelViewSet):
 class GetCoursesView(ModelViewSet):
     http_method_names = ('get',)
     permission_classes = ()
-    queryset = Course.objects.filter(active=True)
+    queryset = Course.objects.select_related('type').filter(active=True)
     serializer_class = CoursesSerializer
 
 
 class BookingCourseView(ModelViewSet):
     http_method_names = ('post', 'get')
-    queryset = Subscription.objects.filter(course__active=True, course__open_to_booking=True)
+    queryset = Subscription.objects.select_related('subscription').filter(course__active=True, course__open_to_booking=True)
     permission_classes = ()
     serializer_class = BookingSerializer
 

@@ -57,10 +57,10 @@ class Course(BaseModel):
     category = models.ForeignKey(CourseType, on_delete=models.PROTECT, related_name='type')
     description = models.TextField()
     active = models.BooleanField(default=True)
-    image = models.ImageField(upload_to='courses/media', null=True, blank=True)
+    image = models.ImageField(upload_to='courses/media')
     days = models.CharField(max_length=100, choices=CHOICES_DAYS, default=Sunday_Tuesday_Thursday)
     hours = models.CharField(max_length=100, choices=CHOICES_TIME, default=TIME1)
-    limit_booking = models.PositiveIntegerField(null=True, blank=True, unique=False)
+    limit_booking = models.PositiveIntegerField(default=0, null=True, blank=True, unique=False)
     open_to_booking = models.BooleanField(default=False)
     number_of_student = models.PositiveIntegerField(default=0, null=True, blank=True)
 
