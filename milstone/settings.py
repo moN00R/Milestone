@@ -185,3 +185,11 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_ALL_METHODS = True  # Allow all methods for development
 
 CORS_ALLOW_ALL_HEADERS = True  # Allow all headers for development
+
+STATIC_URL =  '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+
+MIDEA_ROOT = os.path.join(BASE_DIR, 'media')
