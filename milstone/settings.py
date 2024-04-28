@@ -171,6 +171,8 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -186,10 +188,6 @@ CORS_ALLOW_ALL_METHODS = True  # Allow all methods for development
 
 CORS_ALLOW_ALL_HEADERS = True  # Allow all headers for development
 
-STATIC_URL =  '/static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 MEDIA_URL = '/media/'
 
-MIDEA_ROOT = os.path.join(BASE_DIR, 'media')
+MIDEA_ROOT = BASE_DIR/'media'
