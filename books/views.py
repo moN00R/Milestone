@@ -7,6 +7,6 @@ from rest_framework.permissions import IsAuthenticated
 
 class LibraryView(ModelViewSet):
     http_method_names = ('get', )
-    permission_classes =() 
+    permission_classes =(IsAuthenticated, ) 
     queryset = Library.objects.filter(publish=True)
     serializer_class = GetBookesSerializer
