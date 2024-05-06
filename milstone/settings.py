@@ -188,6 +188,5 @@ CORS_ALLOW_ALL_METHODS = True  # Allow all methods for development
 
 CORS_ALLOW_ALL_HEADERS = True  # Allow all headers for development
 
-MEDIA_URL = '/media/'
-
-MIDEA_ROOT = BASE_DIR/'media'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
