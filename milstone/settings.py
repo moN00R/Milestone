@@ -181,7 +181,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 PHONENUMBER_DEFAULT_REGION = "SY"
 
 CORS_ALLOWED_ORIGINS = [
-    '*'  # Replace with your React app's development URL
+    'http://localhost:3000',  # Replace with your React app's development URL
+    'http://89.116.139.231:3000',  # Replace with your React app's development URL
 ]
 
 CORS_ALLOW_ALL_METHODS = True  # Allow all methods for development
